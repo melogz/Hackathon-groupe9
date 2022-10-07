@@ -9,3 +9,6 @@ Todo list of the project
 - [ ] fastqc (djamel)
 - [ ] subread (louis)
 - [ ] DESeq2 (axel)
+
+## DATA
+- [ ] locate the 8 files used by the articles
