@@ -11,4 +11,4 @@ Todo list of the project
 - [ ] DESeq2 (axel)
 
 ## DATA
-- [ ] locate the 8 files used by the articles
+- [X] locate the 8 files used by the articles
