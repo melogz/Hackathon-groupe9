@@ -14,9 +14,7 @@ Les données utilisées sont les SRA dont les id sont dans [SraAccList.txt](SraA
 
 Le workflow est implémenté avec Snakemake.
 
-<div style="width:60px ; height:60px">
 ![Schema du workflow](assets/workflow.png?raw=true "Schema du workflow")
-<div>
 
 ## TODO
 
