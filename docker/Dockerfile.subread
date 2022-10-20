@@ -1,27 +1,12 @@
-#Use an official Ubuntu runtime as a parent image
-FROM ubuntu:latest
+FROM --platform=linux/amd64 ubuntu:22.04
+RUN apt-get update --fix-missing \
+&& apt-get install -y wget \
+&& cd /usr/local/ \
+&& wget https://github.com/ShiLab-Bioinformatics/subread/releases/download/2.0.2/subread-2.0.2-Linux-x86_64.tar.gz \
+&& tar -xzvf subread-2.0.2-Linux-x86_64.tar.gz \
+&& cp subread-2.0.2-Linux-x86_64/bin/featureCounts /usr/local/bin/featureCounts \
+&& chmod +x /usr/local/bin/featureCounts \
+&& rm subread-2.0.2-Linux-x86_64.tar.gz \
+&& rm -rf subread-2.0.2-Linux-x86_64
+ENTRYPOINT ["/usr/local/bin/featureCounts"]
 
-# Set the working directory to /home
-WORKDIR /home
-
-#set User ROOT
-USER root
-
-# config issues about region and time 
-RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
-
-RUN apt-get update -y \
-&& apt-get install -y --no-install-recommends \
-	build-essential \
-	software-properties-common \
-	apt-utils \
-	nano \
-	git \
-  unzip \
-  wget \   
-	locales \
-	&& locale-gen en_US.UTF-8 \
-	&& wget -O subread.tar.gz https://downloads.sourceforge.net/project/subread/subread-2.0.0/subread-2.0.0-Linux-x86_64.tar.gz \
-	&& tar zxvf subread.tar.gz \
-	&& rm subread.tar.gz \
-	&& ln -sf /home/subread-2.0.0-Linux-x86_64/bin/* /usr/local/bin/
