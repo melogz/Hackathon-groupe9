@@ -21,3 +21,8 @@ Todo list of the project
     - [ ] Mapping (Star)
     - [ ] Counting (features count)
 - [ ] Data analysis (DESeq2)
+
+
+## Test DATA 
+
+http://cdna.eva.mpg.de/neandertal/altai/AltaiNeandertal/bam/
