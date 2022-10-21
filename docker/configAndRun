@@ -1,0 +1,14 @@
+#!/bin/sh
+CMD=$@
+
+export HOME=`pwd`
+
+NCBI_CONF_DIR="${HOME}/.ncbi"
+mkdir -p "${NCBI_CONF_DIR}"
+
+USER_SETTING="${NCBI_CONF_DIR}/user-settings.mkfg"
+
+printf '/LIBS/IMAGE_GUID = "%s"\n' `uuidgen` >> ${USER_SETTING}
+printf '/libs/cloud/report_instance_identity = "true"\n' >> ${USER_SETTING}
+
+${CMD}
