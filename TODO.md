@@ -7,7 +7,7 @@ Todo list of the project
 - [X] SRA tools (for fastqdump)(djamel)
 - [X] STAR (luca) 
 - [ ] fastqc (djamel)
-- [ ] subread (louis)
+- [X] subread (louis)
 - [X] DESeq2 (axel)
 
 ## DATA
