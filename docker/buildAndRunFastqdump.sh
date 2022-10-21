@@ -3,4 +3,4 @@ docker run -t -d --name running fastqdump_image
 docker exec -d running bash -c "source usr/local/inExec.sh"
 docker exec -it running fastq-dump --help
 
-# Usage : docker exec -it running fastq-dump --stdout -X 2 ${SRRID} >> 
+# Usage : docker exec -it running fastq-dump --stdout [SRR_id] > fastq/[SRR_id].fastq
