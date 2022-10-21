@@ -1,7 +1,7 @@
 # base image: Ubuntu
 FROM ubuntu:22.04
 
-ENV PATH=$PATH:$PWD/sratoolkit.3.0.0-ubuntu64/bin
+ENV PATH=$PATH:/usr/local/sratoolkit.3.0.0-ubuntu64/bin
 
 RUN apt-get update --fix-missing \
 && apt-get install -y wget \
