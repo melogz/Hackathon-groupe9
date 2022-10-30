@@ -1,0 +1,32 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 2
+Rules claiming more threads will be scaled down.
+Job stats:
+job                count    min threads    max threads
+---------------  -------  -------------  -------------
+all                    1              1              1
+processing_step        8              1              1
+total                  9              1              1
+
+Select jobs to execute...
+
+[Sun Oct 30 15:47:18 2022]
+rule processing_step:
+    output: SRR628585.fastq
+    jobid: 4
+    reason: Missing output files: SRR628585.fastq
+    wildcards: sample=SRR628585
+    resources: tmpdir=/tmp
+
+[Sun Oct 30 15:47:18 2022]
+rule processing_step:
+    output: SRR628583.fastq
+    jobid: 2
+    reason: Missing output files: SRR628583.fastq
+    wildcards: sample=SRR628583
+    resources: tmpdir=/tmp
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2022-10-30T154717.895605.snakemake.log
