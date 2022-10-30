@@ -1,0 +1,15 @@
+FROM --platform=linux/amd64 ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PATH=$PATH:/usr/local/FastQC
+
+RUN apt-get update --fix-missing 
+RUN apt-get install -y wget unzip perl
+RUN cd /usr/local/ \
+&& wget "https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.9.zip" \
+&& unzip fastqc_v0.11.9.zip \
+&& rm fastqc_v0.11.9.zip \
+&& chmod +x FastQC/fastqc
+RUN apt-get install -y default-jre
+
+ENTRYPOINT ["/usr/local/FastQC/fastqc"]

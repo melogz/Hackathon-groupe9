@@ -1,0 +1,1 @@
+docker run --volume=/tmp/Hackathon-groupe9/fastq:/fastq fastqc_image fastq/SRR628582.fastq
