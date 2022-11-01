@@ -1,4 +1,7 @@
 FROM --platform=linux/amd64 ubuntu:22.04
+
+ENV PATH=$PATH:/usr/local/bin/featureCounts
+
 RUN apt-get update --fix-missing \
 && apt-get install -y wget \
 && cd /usr/local/ \
@@ -9,4 +12,3 @@ RUN apt-get update --fix-missing \
 && rm subread-2.0.2-Linux-x86_64.tar.gz \
 && rm -rf subread-2.0.2-Linux-x86_64
 
-ENTRYPOINT ["/usr/local/bin/featureCounts"]
