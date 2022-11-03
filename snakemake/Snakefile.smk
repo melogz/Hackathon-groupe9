@@ -15,11 +15,10 @@ rule SRA_download_gtf:
     output:"/downloaded_gtf/{chro}.gtf"
     run:
 
-
 rule STAR_index:
     input:
         gene = "/downloaded_genome/{chro}.fa",
-        annot = "/downloaded_gtf/{chro}.gtf"
+        annot = "/downloaded_gtf/gencode.v24lift37.basic.annotation.gtf"
     output: "/index/{chro}"
     run:
 
