@@ -6,6 +6,6 @@ rule all:
 rule processing_step:
 	output: "{sample}.fastq"
 	run:
+		shell("mkdir -p fastq")
 		for s in samples:
 			shell("docker exec -it running fastq-dump -X 100 --stdout {s} > fastq/{s}.fastq")
-			shell("tail -n +3 fastq/{s}.fastq > fastq/{s}.fastq")
