@@ -4,11 +4,11 @@ Todo list of the project
 
 ## Dockers images
 
-- [X] SRA tools (for fastqdump)(djamel)
-- [X] STAR (luca) 
-- [X] fastqc (djamel)
-- [X] subread (louis)
-- [X] DESeq2 (axel)
+- [X] SRA tools (for fastqdump)
+- [X] STAR
+- [X] fastqc
+- [X] subread
+- [X] DESeq2
 
 ## DATA
 - [X] locate the files used by the articles
