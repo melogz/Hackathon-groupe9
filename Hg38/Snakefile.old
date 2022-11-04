@@ -1,0 +1,40 @@
+chro=["chrX","chrY.fa.gz"]
+
+rule all:
+	input:
+		"SA"
+
+rule download_annot:
+	output:
+		"gencode.v42.annotation.gtf.gz"
+	shell:
+		"wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_42/gencode.v42.annotation.gtf.gz"	
+
+rule gunzip:
+	input:
+		"gencode.v42.annotation.gtf.gz"
+	output:
+		"gencode.v42.annotation.gtf"		
+	shell:
+		"gzip -d gencode.v42.annotation.gtf.gz"
+
+rule download_chr:
+	output:
+		"{chro}.fa.gz"
+	shell:
+		"bash script_download.sh"
+rule gunzip_chr:
+	input:
+		"{chro}.fa.gz"
+	output:
+		"{chro}.fa"
+	shell:
+		"gunzip chr*.fa.gz"		
+rule index:
+	input:	
+		"gencode.v42.annotation.gtf",
+		"chrX.fa"
+	output:
+		"SA"
+	shell:
+		"STAR --runMode genomeGenerate --runThreadN 4 --genomeDir indexGenome --genomeFastaFiles chr*.fa --sjdbGTFfile gencode.v42.annotation.gtf"								
