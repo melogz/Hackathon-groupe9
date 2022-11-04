@@ -15,11 +15,11 @@ Todo list of the project
 
 ## Workflow
 
-- [ ] Create index (STAR)
+- [X] Create index (STAR)
 - [ ] Parallelize to compute on each sequence
     - [X] FastQ extraction (SRA tools kit)
     - [ ] Mapping (Star)
-    - [ ] Counting (features count)
+    - [X] Counting (features count)
 - [ ] Data analysis (DESeq2)
 
 
