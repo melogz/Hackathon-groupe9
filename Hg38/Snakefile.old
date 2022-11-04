@@ -37,4 +37,8 @@ rule index:
 	output:
 		"SA"
 	shell:
-		"STAR --runMode genomeGenerate --runThreadN 4 --genomeDir indexGenome --genomeFastaFiles chr*.fa --sjdbGTFfile gencode.v42.annotation.gtf"								
+		#"STAR --runMode genomeGenerate --runThreadN 4 --genomeDir indexGenome --genomeFastaFiles chr*.fa --sjdbGTFfile gencode.v42.annotation.gtf"								
+		"""docker run --volume=/tmp/Hackathon-groupe9/data:/data -t img_star STAR --runMode genomeGenerate --runThreadN 2 \
+            --genomeDir $PWD/indexGenome \
+            --genomeFastaFiles chr*.fa \
+            --sjdbGTFfile gencode.v42.annotation.gtf"""
