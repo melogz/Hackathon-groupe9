@@ -6,6 +6,7 @@ rule all:
 rule SRA_download_fastq: 
     output:"/downloaded_fastq/{sample}.fq"
     run:
+        pass
 
 rule SRA_download_genome:
     output:"/downloaded_genome/{chro}.fa"
