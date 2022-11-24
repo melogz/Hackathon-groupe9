@@ -1,4 +1,4 @@
-chro=["chrX","chrY.fa.gz"]
+chro=["chrX","chrY"]
 
 rule all:
 	input:
@@ -22,7 +22,7 @@ rule download_chr:
 	output:
 		"{chro}.fa.gz"
 	shell:
-		"bash script_download.sh"
+		"bash Hg38/script_download.sh"
 rule gunzip_chr:
 	input:
 		"{chro}.fa.gz"
@@ -37,8 +37,8 @@ rule index:
 	output:
 		"SA"
 	shell:
-		#"STAR --runMode genomeGenerate --runThreadN 4 --genomeDir indexGenome --genomeFastaFiles chr*.fa --sjdbGTFfile gencode.v42.annotation.gtf"								
-		"""docker run --volume=/tmp/Hackathon-groupe9/data:/data -t img_star STAR --runMode genomeGenerate --runThreadN 2 \
+		#"STAR --runMode genomeGenerate --runThreadN 8 --genomeDir indexGenome --genomeFastaFiles chr*.fa --sjdbGTFfile gencode.v42.annotation.gtf"								
+		"""docker run --volume=/tmp/Hackathon-groupe9:/data -t img_star STAR --runMode genomeGenerate --runThreadN 8 \
             --genomeDir $PWD/indexGenome \
-            --genomeFastaFiles chr*.fa \
-            --sjdbGTFfile gencode.v42.annotation.gtf"""
+            --genomeFastaFiles data/chr*.fa \
+            --sjdbGTFfile data/gencode.v42.annotation.gtf"""
