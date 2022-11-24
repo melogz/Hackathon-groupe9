@@ -1,0 +1,86 @@
+samples = ["chr"+str(i) for i in range(1,23)] + ["chrX", "chrY"]
+fasta = ["SRR628582", "SRR628583", "SRR628584", "SRR628585", "SRR628586", "SRR628587", "SRR628588", "SRR628589"]
+rule all:
+	input:
+		"data/gendir/hello1.txt"
+		
+rule processing_step:
+	output: "data/fastqFiles/{sample}.fastq"
+	run:
+		shell("mkdir -p data")
+		shell("mkdir -p data/fastqFiles")
+		for s in samples:
+			shell("docker exec -it running fastq-dump -X 100 --stdout {s} > data/fastqFiles/{s}.fastq") 
+			
+rule downloadChr:
+	output: "data/{sample}.fa"
+	shell:"""
+            mkdir -p data
+            mkdir -p data/gendir
+            wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/chromosomes/{wildcards.sample}.fa.gz
+            gunzip {wildcards.sample}.fa.gz
+            mv {wildcards.sample}.fa data
+        """
+
+rule downloadGtf:
+    output: "data/gencode.v24lift37.basic.annotation.gtf"
+    shell:"""
+            wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_24/GRCh37_mapping/gencode.v24lift37.basic.annotation.gtf.gz
+            gunzip gencode.v24lift37.basic.annotation.gtf.gz
+            mv gencode.v24lift37.basic.annotation.gtf data
+    """
+
+rule star:
+    input: expand("data/{sample}.fa", sample=samples) + ["data/gencode.v24lift37.basic.annotation.gtf"]
+    output: "data/gendir/hello.txt"
+    threads: 8
+    shell:"""docker run --volume=/tmp/Hackathon-groupe9/data:/data -t img_star STAR --runMode genomeGenerate --runThreadN 8 \
+            --genomeDir data/gendir \
+            --genomeFastaFiles data/chr*.fa \
+            --sjdbGTFfile data/gencode.v24lift37.basic.annotation.gtf
+            echo 'hello world' > data/gendir/hello.txt"""samples = ["chr"+str(i) for i in range(1,23)] + ["chrX", "chrY"]
+samples = ["chr21", "chrX"]
+rule all:
+	input:
+		"data/gendir/hello.txt"
+		
+rule downloadChr:
+	output: "data/{sample}.fa"
+	shell:"""
+            mkdir -p data
+            mkdir -p data/gendir
+            wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/chromosomes/{wildcards.sample}.fa.gz
+            gunzip {wildcards.sample}.fa.gz
+            mv {wildcards.sample}.fa data
+        """
+
+rule downloadGtf:
+    output: "data/gencode.v24lift37.basic.annotation.gtf"
+    shell:"""
+            wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_24/GRCh37_mapping/gencode.v24lift37.basic.annotation.gtf.gz
+            gunzip gencode.v24lift37.basic.annotation.gtf.gz
+            mv gencode.v24lift37.basic.annotation.gtf data
+    """
+
+rule star:
+    input: expand("data/{sample}.fa", sample=samples) + ["data/gencode.v24lift37.basic.annotation.gtf"]
+    output: "data/gendir/hello.txt"
+    threads: 8
+    shell:"""docker run --volume=/tmp/Hackathon-groupe9/data:/data -t img_star STAR --runMode genomeGenerate --runThreadN 8 \
+            --genomeDir data/gendir \
+            --genomeFastaFiles data/chr*.fa \
+            --sjdbGTFfile data/gencode.v24lift37.basic.annotation.gtf
+            echo 'indexation' > data/gendir/hello.txt
+            """
+
+ule star_mapping:
+	input: 
+		index = "data/gendir/hello.txt",
+		R1 = "data/sample/{sample}.R1.fastq",
+		R2 = "data/sample/{sample}.R2.fastq"
+	output:"mapped_reads/{sample}.bam"
+	shell:"""docker run --volume=/tmp/Hackathon-groupe9/data:/data -t img_star STAR_container STAR --genomeDir /tmp/Hackathon-groupe9/data/gendir --readFilesIn {input.R1} {input.R2} --outSAMtype BAM Unsorted > {output}
+		echo 'Mapping' > data/gendir/hello1.txt"""
+
+
+            
