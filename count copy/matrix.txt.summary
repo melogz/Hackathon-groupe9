@@ -1,0 +1,15 @@
+Status	data/mapped/SRR628582Aligned.out.bam	data/mapped/SRR628583Aligned.out.bam	data/mapped/SRR628584Aligned.out.bam	data/mapped/SRR628585Aligned.out.bam	data/mapped/SRR628586Aligned.out.bam	data/mapped/SRR628587Aligned.out.bam	data/mapped/SRR628588Aligned.out.bam	data/mapped/SRR628589Aligned.out.bam
+Assigned	3577682	3071005	2199568	2834947	2337642	3757871	2756581	4610438
+Unassigned_Unmapped	0	0	0	0	0	0	0	0
+Unassigned_Read_Type	0	0	0	0	0	0	0	0
+Unassigned_Singleton	0	0	0	0	0	0	0	0
+Unassigned_MappingQuality	0	0	0	0	0	0	0	0
+Unassigned_Chimera	0	0	0	0	0	0	0	0
+Unassigned_FragmentLength	0	0	0	0	0	0	0	0
+Unassigned_Duplicate	0	0	0	0	0	0	0	0
+Unassigned_MultiMapping	5109764	20700130	2902076	16907380	3977412	18702924	7091402	7895612
+Unassigned_Secondary	0	0	0	0	0	0	0	0
+Unassigned_NonSplit	0	0	0	0	0	0	0	0
+Unassigned_NoFeatures	21857384	23861901	16594759	19722841	16355090	23520187	19521284	26764156
+Unassigned_Overlapping_Length	0	0	0	0	0	0	0	0
+Unassigned_Ambiguity	237340	225974	154349	193626	161524	272696	210223	319512
