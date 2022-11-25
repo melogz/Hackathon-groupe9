@@ -1,19 +1,18 @@
-SAMPLES = ["SRR628582", "SRR628583", "SRR628584", "SRR628585", "SRR628586", "SRR628587", "SRR628588", "SRR628589"]
-chro=["chr1","chr2","chr3","chr4","chr5","chr6","chr7","chr8","chr9","chr10","chr11","chr12","chr13","chr14","chr15","chr16","chr17","chr18","chr19","chr20","chr21","chr22","chr23","chr24"]
+samples = ["SRR628582", "SRR628583", "SRR628584", "SRR628585", "SRR628586", "SRR628587", "SRR628588", "SRR628589"]
 
 rule all:
-    input : /counts/matrix/{sample}.txt"
+    input : "data1/count/matrix.txt"
+
+rule nothingHere:
+    output:
+        mapped = expand("data1/mapped/{sample}Aligned.out.bam", sample=samples)
 
 rule counts:
     input:
-        mapped = "/mapped/{sample}.bam",
-        annot = "/downloaded_gtf/{chro}.gtf"
+        mapped = expand("data1/mapped/{sample}Aligned.out.bam", sample=samples)
     output:
-        counts = "/counts/matrix/{sample}.txt",
-        summary = "/counts/summary/{sample}.counts.txt.summary"
+        counts = "data1/count/matrix.txt"
     run:
-        shell("docker build -f docker/Dockerfile.subread -t subread_image docker")
-        for s in samples :
-            shell("docker run subread_image -a {input.annot} -o {output.counts} {input.mapped}")
+        shell("docker run --volume=/tmp/Hackathon-groupe9/data1:/data1 subread_image featureCounts -p -T 16 -a data1/gencode.v24lift37.basic.annotation.gtf -o {output.counts} " + " ".join(input.mapped))
 
 #featureCounts [options] -a <annotation_file> -o <output_file> input_file1
