@@ -35,4 +35,4 @@ Contient les snakefiles de notre travail, les intermédiaires et le workflow gé
 
 ## que faire ?
 
-en récupérant le git sur un repository local, lancez le script run.sh et des que vous récuperez votre matrice de comptage vous pourrez utiliser le script DEseq.r
+en récupérant le git sur un repository local, lancez le script run.sh et dès que vous récuperez votre matrice de comptage vous pourrez utiliser le script DEseq.r
