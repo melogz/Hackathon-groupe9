@@ -19,8 +19,8 @@ library(biomaRt)
 
 library("FactoMineR")
 
-
-matrix_brut_gene=read.table("countmatrixWithout_p.txt")
+setwd("/data")
+matrix_brut_gene=read.table("/data/countmatrixWithout_p.txt")
 
 
 data_gene=cbind(matrix_brut_gene$V7,matrix_brut_gene$V8,matrix_brut_gene$V9,matrix_brut_gene$V14,matrix_brut_gene$V10,
